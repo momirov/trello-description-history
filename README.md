@@ -25,3 +25,6 @@ $ git push heroku master
 $ heroku config:set CONSUMER_KEY=1234567890abcdef CONSUMER_SECRET=abcdef123456789 APP_NAME="3-Legged OAuth Example"
 ```
 
+Running Example
+---------------
+<http://trello-oauth-sinatra-example.herokuapp.com>
