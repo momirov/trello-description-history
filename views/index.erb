@@ -1,0 +1,10 @@
+Welcome, <%=me.full_name%>
+
+<h2>Boards</h2>
+<ul>
+<% boards.each do |b| %>
+  <li>
+    <a href="<%=b.url%>"><%=b.name%></a> 
+  </li>
+<% end %>
+</ul>
