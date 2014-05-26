@@ -2,6 +2,10 @@ require 'trello'
 require 'active_support/inflector' #solely for `pluralize`
 require 'sinatra'
 require 'uri'
+require 'slim'
+require 'pp'
+require 'kramdown'
+require 'diffy'
 
 use Rack::Session::Pool
 
@@ -30,8 +34,13 @@ end
 # This alone, is relatively useless from a user's perspective, but it's the
 # groundwork for development of custom reports/workflow/etc.
 get '/' do
-  me = session[:client].find(:member, 'me')
+  me =   session[:client].find(:member, 'me')
   erb :index, :locals => { :me => me, :boards => me.boards}
+end
+
+get '/card/:card_id' do |card_id|
+  card = session[:client].find(:card, card_id)
+  slim :card, :locals => { :card => card }
 end
 
 # Create an access token and store it in our client object.

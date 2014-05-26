@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    style == Diffy::CSS
+    title Diff: #{card.name}
+  body
+    h2 
+      a href=card.url = card.name
+    - for action in card.actions(:filter => :updateCard) do
+      - if action.data["card"]["desc"]
+        h3 Modified by #{action.member_creator.full_name} on #{action.date}
+        == Diffy::Diff.new(Kramdown::Document.new(action.data["card"]["desc"]).to_html, Kramdown::Document.new(action.data["old"]["desc"]).to_html).to_s(:html)
